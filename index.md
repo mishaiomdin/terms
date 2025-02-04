@@ -15,10 +15,6 @@ My name is [Misha Iomdin](https://mishaiomdin.github.io/). I am a school student
 
 ## Maths
 
-Try Latex outside of table: $x_n = x^2$
-$$x_n = x^2$$
-\[x_n = x^2\]
-
 ### Calculus
 
 |          Symbol         |           English           |              русский             |            Deutsch           |        עברית        |
@@ -26,7 +22,7 @@ $$x_n = x^2$$
 |                         |           calculus          |       математический анализ      |         die Analysis         | חשבון אינפיניטסימלי |
 |                         |                             |     предел последовательности    |                              |                     |
 |                         |           sequence          |        последовательность        |           die Folge          |         סדרה        |
-| $\lim_{x\to\infty} x_n$ |     limit of a sequence     |     предел последовательности    |   der Grenzwert einer Folge  |     גבול של סדרה    |
+| $$\lim_{x\to\infty} x_n$$ |     limit of a sequence     |     предел последовательности    |   der Grenzwert einer Folge  |     גבול של סדרה    |
 |                         |         bounded seq.        |        ограниченная посл.        |                              |                     |
 |                         |       convergent seq.       |         сходящаяся посл.         |       konvergente Folge      |     סדרה מתכנסת     |
 |                         |        divergent seq.       |        расходящаяся посл.        |       divergente Folge       |     סדרה מתבדרת     |
@@ -64,11 +60,11 @@ $$x_n = x^2$$
 |                         |                             |        разрыв второго рода       |                              |                     |
 |                         |                             |            производная           |                              |                     |
 |                         |                             |     дифференцируемая функция     |                              |                     |
-| $f'(x)$                 |          derivative         |            производная           |         die Ableitung        |        נגזרת        |
+| $$f'(x)$$                 |          derivative         |            производная           |         die Ableitung        |        נגזרת        |
 |                         |                             |       касательная к функции      |                              |                     |
 |                         |                             |        мгновенная скорость       |                              |                     |
-| $(x^n)' = nx^{n-1}$     |          power rule         |   производная степенной функции  |          Potenzregel         |                     |
-| $(uv)' = u'v + uv'$     |         product rule        |         правило Лейбница         |         Produktregel         |     כלל לייבניץ     |
+| $$(x^n)' = nx^{n-1}$$     |          power rule         |   производная степенной функции  |          Potenzregel         |                     |
+| $$(uv)' = u'v + uv'$$     |         product rule        |         правило Лейбница         |         Produktregel         |     כלל לייבניץ     |
 |                         |        quotient rule        | производная рациональной функции |        Quotientenregel       |                     |
 |                         |          chain rule         |    производная сложной функции   |          Kettenregel         |      כלל השרשרת     |
 
