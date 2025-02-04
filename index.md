@@ -15,6 +15,10 @@ My name is [Misha Iomdin](https://mishaiomdin.github.io/). I am a school student
 
 ## Maths
 
+Try Latex outside of table: $x_n = x^2$
+$$x_n = x^2$$
+\[x_n = x^2\]
+
 ### Calculus
 
 |          Symbol         |           English           |              русский             |            Deutsch           |        עברית        |
