@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en-US" }}">
+  <head>
+    <!-- default settings -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/languages/logo.png">
+
+    <!-- Jekyll stuff -->
+
+    {% seo %}
+
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="/languages/stylesheet.css">
+
+    <!-- Google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 300,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body" style="margin-top: 0px !important">
+
+      <!-- languages shown in menu -->
+      {% assign languages = "ru,en,fr,he,de,hu,es" | split: "," %}
+
+      <!-- MENU -->
+      <div class="menu">
+
+        <div class="menu_row">
+
+          <a href="{{ "/" | absolute_url }}">
+            <img height="25" width="25" src="/languages/logo.png"
+            style="background-color: transparent;">
+          </a>
+
+          <!-- title "languages" -->
+          <a href="{{ "/" | absolute_url }}">Languages</a>
+
+          <!-- Settings: button -->
+          <button id="settings_button" onclick="callbackClickedMenuPart('settings');" data-open="closed">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+
+          <!-- Languages: button -->
+          <button id="languages_button" onclick="callbackClickedMenuPart('languages');" data-open="closed">
+            <span class="material-symbols-outlined">language</span>
+          </button>
+
+          <!-- Contents: button -->
+          <button id="contents_button" onclick="callbackClickedMenuPart('contents');" data-open="closed">
+            <span class="material-symbols-outlined">list</span>
+          </button>
+
+        </div>
+
+        <!-- Settings: list -->
+        <div id="settings_list" class="menu_row" style="display: none">
+          <!-- Checkbox: Mark endings -->
+          <label>
+            <input type="checkbox" id="toggleMarkEndings" checked> Mark endings
+          </label>
+        </div>
+
+        <!-- Languages: list -->
+        <div id="languages_list" class="menu_row" style="display: none">
+          <!-- language buttons -->
+          {% for cur_lang in languages %}
+              <span>
+              {% if cur_lang == page.lang_code %}
+                <button class="chosen_button">{{ cur_lang }}</button>
+              {% else %}
+                  <button onclick="redirectToLanguage('{{ cur_lang }}')">{{ cur_lang }}</button>
+              {% endif %}
+
+              </span>
+          {% endfor %}
+        </div>
+
+        <!-- Contents: list -->
+        <div id="contents_list" class="menu_row" style="display: none">
+          <!-- Checkbox: Mark endings -->
+          <div id="toc"></div>
+        </div>
+
+      </div>
+
+      
+
+      {{ content }}
+
+      {% if site.github.private != true and site.github.license %}
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. {% github_edit_link "Improve this page" %}.
+      </div>
+      {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+
+
+  <script>
+    // Checkbox: mark endings
+    document.getElementById("toggleMarkEndings").addEventListener("change", function () {
+        if (this.checked) {
+            markEndings();
+        } else {
+            unmarkEndings();
+        }
+    });
+
+    function unmarkEndings() {
+        if (!document.getElementById("disable-end-style")) {
+            const style = document.createElement("style");
+            style.id = "disable-end-style";
+            style.innerHTML = "end { all: unset !important; }";
+            document.head.appendChild(style);
+        }
+        localStorage.setItem("mark_endings", false);
+    }
+
+    function markEndings() {
+        const style = document.getElementById("disable-end-style");
+        if (style) style.remove();
+        localStorage.setItem("mark_endings", true);
+    }
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://sethc23.github.io/static/js/jekyll-table-of-contents/toc.js">
+  </script>
+
+  <script>
+
+    function closeMenuPart(part) {
+      console.log("Closing", part, `${part}_button`);
+      var button = document.getElementById(`${part}_button`);
+      var menu = document.getElementById(`${part}_list`);
+      menu.style.display = "none";
+      button.dataset.open = "closed";
+      localStorage.setItem(`${part}_open`, false);
+    }
+
+    function openMenuPart(part) {
+      var button = document.getElementById(`${part}_button`);
+      var menu = document.getElementById(`${part}_list`);
+      menu.style.display = "block";
+      button.dataset.open = "open";
+      localStorage.setItem(`${part}_open`, true);
+    }
+
+    function closeAll() {
+      for (const part of ["settings", "languages", "contents"]) {
+        closeMenuPart(part);
+      }
+    }
+
+    function callbackClickedMenuPart(part) {
+      var button = document.getElementById(`${part}_button`);
+      if (button.dataset.open === "closed") {
+        closeAll();
+        openMenuPart(part);
+      }
+      else {
+        closeMenuPart(part);
+      }
+    }
+
+    function redirectToLanguage(lang_code) {
+      window.location.href = `/languages/${lang_code}`;
+    }
+
+    /* Locally saved settings, opened/closed */
+    if (localStorage.getItem("mark_endings") === "false") {
+      document.getElementById("toggleMarkEndings").checked = false;
+      unmarkEndings();
+    }
+
+    for (const part of ["settings", "languages", "contents"]) {
+      if (localStorage.getItem(`${part}_open`) === "true") {
+        openMenuPart(part);
+      }
+    }
+    
+    // Add table of contents
+    $(document).ready(function() {
+      $('#toc').toc();
+    });
+  </script>
+</html>
