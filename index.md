@@ -2,7 +2,7 @@
 layout: mylayout
 title:
 header: 🏠︎
-lang_code: none
+page_code: none
 ---
 
 # Terms

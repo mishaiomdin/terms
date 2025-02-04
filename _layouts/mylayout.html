@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/languages/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/terms/logo.png">
 
     <!-- Jekyll stuff -->
 
@@ -17,7 +17,7 @@
     {% include head-custom.html %}
 
     <!-- stylesheet -->
-    <link rel="stylesheet" href="/languages/stylesheet.css">
+    <link rel="stylesheet" href="/terms/stylesheet.css">
 
     <!-- Google icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -37,8 +37,8 @@
   <body>
     <div class="container-lg px-3 my-5 markdown-body" style="margin-top: 0px !important">
 
-      <!-- languages shown in menu -->
-      {% assign languages = "ru,en,fr,he,de,hu,es" | split: "," %}
+      <!-- pages shown in menu -->
+      {% assign pages = "main," | split: "," %}
 
       <!-- MENU -->
       <div class="menu">
@@ -46,12 +46,12 @@
         <div class="menu_row">
 
           <a href="{{ "/" | absolute_url }}">
-            <img height="25" width="25" src="/languages/logo.png"
+            <img height="25" width="25" src="/terms/logo.png"
             style="background-color: transparent;">
           </a>
 
-          <!-- title "languages" -->
-          <a href="{{ "/" | absolute_url }}">Languages</a>
+          <!-- title -->
+          <a href="{{ "/" | absolute_url }}">Terms</a>
 
           <!-- Settings: button -->
           <button id="settings_button" onclick="callbackClickedMenuPart('settings');" data-open="closed">
@@ -73,9 +73,9 @@
         <!-- Settings: list -->
         <div id="settings_list" class="menu_row" style="display: none">
           <!-- Checkbox: Mark endings -->
-          <label>
-            <input type="checkbox" id="toggleMarkEndings" checked> Mark endings
-          </label>
+          <ul>
+            <li>No settings for now</li>
+          </ul>
         </div>
 
         <!-- Languages: list -->
@@ -183,7 +183,7 @@
     }
 
     function redirectToLanguage(lang_code) {
-      window.location.href = `/languages/${lang_code}`;
+      window.location.href = `/terms/${lang_code}`;
     }
 
     /* Locally saved settings, opened/closed */
